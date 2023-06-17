@@ -2,8 +2,9 @@ import boto3
 import os
 from boto3.dynamodb.conditions import Key
 
-DYNAMO_PLATZI = os.environ['DYNAMO_PLATZI']
+# Hola a todos, hoy es 16 de marzo, el profe cumple anos el 29 de marzo
 
+DYNAMO_BD = os.environ['DYNAMO_BD']
 
 class DynamoAccessor:
     def __init__(self, dynamo_table):
@@ -15,7 +16,7 @@ class DynamoAccessor:
         return response["Items"][0] if any(response["Items"]) else None
 
 def lambda_handler(event, context):
-    dynamo_backend = DynamoAccessor(DYNAMO_PLATZI)
+    dynamo_backend = DynamoAccessor(DYNAMO_BD)
     db_element = dynamo_backend.get_data_from_dynamo(event['cc'])
     return db_element
 
